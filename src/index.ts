@@ -83,6 +83,7 @@ console.assert(result === HK.Result.RESULT_OK);
 result = HK.HP_World_Step(world, 1 / 60);
 console.assert(result === HK.Result.RESULT_OK);
 
+/* --------------------------------------------------------------- ObjectStatistics --------------------------------------------------------------- */
 let objectStatistics: ObjectStatistics;
 [result, objectStatistics] = HK.HP_GetStatistics();
 console.assert(result === HK.Result.RESULT_OK);
