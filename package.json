@@ -8,7 +8,7 @@
 		"format": "prettier . --write",
 		"clean": "clear && rm -rf ./dist/ && mkdir ./dist/",
 		"lint": "prettier . --check && DEBUG=eslint:cli-engine eslint .",
-		"build": "tsc && vite build && rm -rf ./tsc/"
+		"build": "tsc && vite build"
 	},
 	"keywords": [],
 	"author": "",

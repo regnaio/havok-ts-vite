@@ -51,5 +51,55 @@ var Module=typeof HavokPhysics!="undefined"?HavokPhysics:{};var readyPromiseReso
 );
 })();
 
-const havokInterface = await HavokPhysics();
-console.log(havokInterface);
+const HK = await HavokPhysics();
+console.log("HK:", HK);
+let result;
+let world;
+[result, world] = HK.HP_World_Create();
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_World_SetGravity(world, [0, -9.8, 0]);
+console.assert(result === HK.Result.RESULT_OK);
+let shape;
+[result, shape] = HK.HP_Shape_CreateBox([0, 0, 0], [0, 0, 0, 1], [1, 1, 1]);
+result = HK.HP_Shape_SetMaterial(shape, [
+  //
+  1,
+  1,
+  0.5,
+  HK.MaterialCombine.MINIMUM,
+  HK.MaterialCombine.MULTIPLY
+]);
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_Shape_SetFilterInfo(shape, [1, 2]);
+console.assert(result === HK.Result.RESULT_OK);
+let body;
+[result, body] = HK.HP_Body_Create();
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_Body_SetShape(body, shape);
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_Body_SetMassProperties(body, [
+  //
+  [0, 0, 0],
+  1,
+  [1, 1, 1],
+  [0, 0, 0, 1]
+]);
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_Body_SetMotionType(body, HK.MotionType.DYNAMIC);
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_Body_SetActivationControl(body, HK.ActivationControl.ALWAYS_ACTIVE);
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_Body_SetQTransform(body, [
+  //
+  [0, 0, 0],
+  [0, 0, 0, 1]
+]);
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_World_AddBody(world, body, false);
+console.assert(result === HK.Result.RESULT_OK);
+result = HK.HP_World_Step(world, 1 / 60);
+console.assert(result === HK.Result.RESULT_OK);
+let objectStatistics;
+[result, objectStatistics] = HK.HP_GetStatistics();
+console.assert(result === HK.Result.RESULT_OK);
+console.log("objectStatistics:", objectStatistics);
