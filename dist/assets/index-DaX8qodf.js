@@ -61,6 +61,7 @@ result = HK.HP_World_SetGravity(world, [0, -9.8, 0]);
 console.assert(result === HK.Result.RESULT_OK);
 let shape;
 [result, shape] = HK.HP_Shape_CreateBox([0, 0, 0], [0, 0, 0, 1], [1, 1, 1]);
+console.assert(result === HK.Result.RESULT_OK);
 result = HK.HP_Shape_SetMaterial(shape, [
   //
   1,
