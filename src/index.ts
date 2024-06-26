@@ -31,6 +31,7 @@ console.assert(result === HK.Result.RESULT_OK);
 /* -------------------------------------------------------------------- Shape --------------------------------------------------------------------- */
 let shape: HP_ShapeId;
 [result, shape] = HK.HP_Shape_CreateBox([0, 0, 0], [0, 0, 0, 1], [1, 1, 1]);
+console.assert(result === HK.Result.RESULT_OK);
 
 result = HK.HP_Shape_SetMaterial(shape, [
 	//
