@@ -5,6 +5,8 @@ import type {
 	//
 	HP_WorldId,
 	//
+	Result,
+	//
 	ObjectStatistics,
 } from '@babylonjs/havok';
 
@@ -17,7 +19,7 @@ console.log('HK:', HK);
 
   This works, but the developer experience could be better
 */
-type Result = ReturnType<typeof HK.HP_GetStatistics>[0];
+// type Result = ReturnType<typeof HK.HP_GetStatistics>[0];
 let result: Result;
 
 /* -------------------------------------------------------------------- World --------------------------------------------------------------------- */
