@@ -78,6 +78,14 @@ result = HK.HP_Body_SetQTransform(body, [
 ]);
 console.assert(result === HK.Result.RESULT_OK);
 
+result = HK.HP_Body_SetEventMask(
+	//
+	body,
+	// @ts-expect-error
+	HK.EventType.COLLISION_STARTED.value | HK.EventType.COLLISION_CONTINUED.value | HK.EventType.COLLISION_FINISHED.value,
+);
+console.assert(result === HK.Result.RESULT_OK);
+
 /* -------------------------------------------------------------- Add Body to World --------------------------------------------------------------- */
 result = HK.HP_World_AddBody(world, body, false);
 console.assert(result === HK.Result.RESULT_OK);
